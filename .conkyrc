@@ -1,0 +1,96 @@
+conky.config = {
+  -- -- Conky settings -- #
+	    background = false,
+	    update_interval = 1,
+
+	    cpu_avg_samples = 2,
+	    net_avg_samples = 2,
+
+	    override_utf8_locale = true,
+
+	    double_buffer = true,
+	    no_buffers = true,
+
+      text_buffer_size = 32768,
+      imlib_cache_size = 0,
+
+  -- -- Colors
+
+  		color0 = 'f0c24c',
+  		color1 = '5b31b6',
+  		color2 = '7b31b6',
+  		color3 = 'f7fef7',
+  		color4 = 'e91e63',
+
+  -- -- Window specifications -- #
+	    own_window = true,
+      own_window_type = 'dock',
+      own_window_argb_visual = true,
+      own_window_argb_value = 0,
+	    own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+      own_window_title = 'clicky',
+
+	    border_inner_margin = 50,
+	    border_outer_margin = 0,
+
+
+  --minimum_size 1100 700
+	    maximum_width = 700,
+
+	    alignment = 'top_right',
+	    gap_x = 0,
+	    gap_y = 30,
+
+  -- -- Graphics settings -- #
+	    draw_shades = false,
+	    draw_outline = false,
+	    draw_borders = false,
+	    draw_graph_borders = false,
+
+  -- -- Text settings -- #
+	    use_xft = true,
+	    font = 'Ubuntu Mono:size=10',
+	    xftalpha = 0.8,
+	    top_name_width = 10,
+      --Ícones: ${font Conky Icons by Carelli:size=14}
+
+	    uppercase = false,
+
+	    default_color = '#FFFFFF',
+
+      --own_window_transparent yes
+	    own_window_colour = '#000000',
+	    minimum_width = 400, minimum_height = 700,
+
+      --CORRECT THIS PATH
+      lua_load = '~/.config/conky/rings.lua',
+      lua_draw_hook_pre = 'conky_rings',
+};
+
+conky.text = [[${font Boogaloo:size=16}
+  ${downspeedgraph wlp3s0 30,100 FFFFFF FFFFFF}${color0} Dw  ${color3}${downspeed wlp3s0}
+  ${upspeedgraph   wlp3s0 30,100 FFFFFF FFFFFF}${color0} Up  ${color3}${upspeed wlp3s0}
+  ${offset 110}${voffset   100}${font Boogaloo:size=16}${color0}TDown : ${color3}${totaldown wlp3s0} ${color0} TUp : ${color3} ${totalup wlp3s0}
+  
+  ${offset  22}${voffset -95}${font Boogaloo:size=16}${color0}CPU
+  ${font Ubuntu Mono:size=8}
+  ${offset  125}${voffset  10}
+  ${offset  160}${voffset -20}
+  ${offset  195}${voffset -20}
+  ${offset  230}${voffset -20}
+  ${font Ubuntu Mono:size=10}
+  ${offset  220}${voffset 25}
+  ${offset  195}${voffset 05}
+  ${goto 20}${font Boogaloo:size=16}${color0}RAM
+
+  ${goto 20}${font Boogaloo:size=16}${color #fefefe}$mem/$memmax${font Boogaloo:size=16}${color0}($memperc%)
+  ${font Ubuntu Mono:size=10}
+  ${goto 20}${color0}${font Boogaloo:size=16}STORAGE${color #f3f3f3}
+  ${font Boogaloo:size=16}
+  ${goto 20}${exec df -h | grep "/dev/nvme0n1" | awk '{ printf "%s of %s \t %s\n", $5, $2, $6 }' }
+  ${goto 20}${exec df -h | grep "/dev/sda" | awk '{ printf "%s of %s \t %s\n", $5, $2, $6 }' }
+  ${goto 20}${exec df -h | grep "/dev/sdb"      | awk '{ printf "%s of %s \t %s\n", $5, $2, $6 }' }
+  
+
+]];
+ 
